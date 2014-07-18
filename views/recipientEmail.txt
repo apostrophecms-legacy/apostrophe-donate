@@ -1,0 +1,10 @@
+You've Received a Donation
+
+Donor Name: {{ first_name | e }} {{ last_name | e }}
+Donation Amount: ${{ total }}
+
+Donor Address:
+{{ line1 }}
+{{ city }} {{ state }}, {{ postal_code }}
+{{ country_code }}
+{{ email }}

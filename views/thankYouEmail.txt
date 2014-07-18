@@ -1,0 +1,5 @@
+Dear {{ first_name }},
+
+Thank You for your generous donation!
+
+Amount: ${{ total }}

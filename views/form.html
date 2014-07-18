@@ -1,0 +1,13 @@
+{% include 'schemas:schemaMacros.html' %}
+{% include 'thankyou.html' %}
+
+<form data-apos-donate-form id="apos-donate-form" method="POST">
+  <label>Donation Information</label>
+  {{ schemaFields(schema, {to: 'last_name'}) }}
+  <label>Credit Card Information</label>
+  {{ schemaFields(schema, {from: 'type', to: 'expire_year'}) }}
+  <label>Billing Information</label>
+  {{ schemaFields(schema, {from: 'line1', to: 'email'}) }}
+  <input value="Donate" type="submit"/>
+  <div class="apos-donate-pending"><img src="/modules/donate/images/spinner.gif"></div>
+</form>

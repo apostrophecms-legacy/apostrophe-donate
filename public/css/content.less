@@ -1,0 +1,73 @@
+#apos-donate-form
+{
+  position: relative;
+
+  > label
+  {
+    display: block;
+    margin: 20px 0;
+    font-family: 'Montserrat';
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+
+  input[type="text"]
+  {
+    border: 1px solid @apos-grey70;
+  }
+
+  .apos-fieldset
+  {
+    margin: 10px 0;
+    &.apos-error { border: 0px solid #fff;}
+  }
+  .apos-fieldset-last-name,
+  .apos-fieldset-first-name,
+  .apos-fieldset-cvv2,
+  .apos-fieldset-expire-year,
+  .apos-fieldset-expire-month,
+  .apos-fieldset-number,
+  .apos-fieldset-line1,
+  .apos-fieldset-city,
+  .apos-fieldset-state,
+  .apos-fieldset-postal-code
+  {
+    display: inline-block;
+    width: 49%;
+  }
+  .apos-error-message
+  {
+    color: @apos-base;
+  }
+}
+
+.apos-donate-pending
+{
+  background-color: #fff;
+  position: absolute;
+  text-align: center;
+  z-index: 10;
+  opacity: 0.7;
+  bottom: 0;
+  left: 0;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  &.apos-donate-show
+  {
+    top: 0;
+    right: 0;
+    img { display: inline-block;}
+  }
+  img
+  {
+    display: none;
+    position: absolute;
+    bottom: 20%;
+  }
+}
+
+.apos-donate-form-thanks
+{
+  display: none;
+}
