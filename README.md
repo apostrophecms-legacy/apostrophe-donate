@@ -36,4 +36,12 @@ In `app.js`, you'll need to configure the `apostrophe-donate` module, just like 
 
 The `client_id` and `client_secret` are retrieved after setting up a pro account with PayPal and registering your application.
 
-more to come...
+
+## Registering an app with PayPal
+
+* Login to PayPal and go to [https://developer.paypal.com](https://developer.paypal.com)
+* Click **Applications**, then click **Create App**.
+* Give your app a name and leave the defaults in place for the **sandbox developer account** field.
+* Click the **Create App**
+* Under **Test Credentials**, note the Client ID and Secret. These are for your local `data/local.js` configuration so as to not be playing with real money in development.
+* Under **Live Credentials**, click **Show** to find the production Client ID and Secret
