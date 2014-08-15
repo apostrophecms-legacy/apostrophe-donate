@@ -22,10 +22,8 @@ $(function() {
             aposSchemas.scrollToError($el);
             return;
           }
-          // console.log(data)
           $.post('/apos-donate', data, function(data){
             if (data.status == 'ok') {
-              // console.log(data)
               $('[data-apos-donate-form-thanks]').show();
               $('[data-apos-donate-form]').remove();
             } else {

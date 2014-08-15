@@ -133,9 +133,7 @@ function Construct(options, callback) {
   ].concat(options.addFields || []);
 
   self.schema = self._schemas.compose(options);
-  // _.each(self.schema, function(item) {
-  //   console.log(item.label + ',' + item.type);
-  // });
+
   self._apos.pushGlobalData({
     aposDonate: {
       schema: self.schema
@@ -191,11 +189,9 @@ function Construct(options, callback) {
       return paypal_sdk.payment.create(payment_details, function(error, payment){
         if(error){
           console.error(error);
-          // console.error(JSON.stringify(error));
           errors.number = "Your credit card was not accepted. Please double check your information.";
           return send();
         } else {
-          // console.log(values);
           return async.series({
             storeInDatabase: function(callback) {
               var donation = _.cloneDeep(values);
@@ -208,7 +204,6 @@ function Construct(options, callback) {
               self._donations.insert(donation, callback);
             },
             emailDonor: function(callback) {
-              // console.log('sent thank you email');
               return self.email(
                 req,
                 {
