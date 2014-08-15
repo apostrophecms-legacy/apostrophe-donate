@@ -58,11 +58,11 @@ Add this line to the template of your choice where you want the form to appear
 `apostrophe-donate` comes with a lot of pre-baked things.
 
 ## Templates
-* `form.html` - donation form generated with `apostrophe-schemas`'s `schemaMacros`. You can redefine the schema in `index.js`.
-* `formWrapper.html` - a wrapper for the form
-* `recipientEmail.html`, `recipientEmail.txt` - email template sent to the recipient of the donation after successful form submission
-* `thankYou.html` - thank you message displayed after successful form submission
-* `thankYouEmail.html`, `thankYouEmail.txt` - email sent to the donor after successful form submission.
+* **form.html** - donation form generated with `apostrophe-schemas`'s `schemaMacros`. You can redefine the schema in `index.js`.
+* **formWrapper.html** - a wrapper for the form
+* **recipientEmail.html, recipientEmail.txt** - email template sent to the recipient of the donation after successful form submission
+* **thankYou.html** - thank you message displayed after successful form submission
+* **thankYouEmail.html, githankYouEmail.txt** - email sent to the donor after successful form submission.
 
 ## Extras
 Pre-baked styles in `content.less` and a `spinner.gif` for backward compatible ui goodness
