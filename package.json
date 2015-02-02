@@ -1,5 +1,5 @@
 {
-  "version": "0.5.1",
+  "version": "0.5.2",
   "name": "apostrophe-donate",
   "description": "Donate module for Apostrophe CMS",
   "main": "index.js",
