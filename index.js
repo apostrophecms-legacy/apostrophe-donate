@@ -197,8 +197,8 @@ function Construct(options, callback) {
       return paypal_sdk.payment.create(payment_details, function(error, payment){
         if(error){
           console.error(error);
-          if (error.response.details)) {
-            console.error(error.response.details))
+          if (error.response.details) {
+            console.error(error.response.details);
           }
           errors.number = "Your credit card was not accepted. Please double check your information.";
           return send();
