@@ -51,7 +51,7 @@ The `client_id` and `client_secret` are retrieved after setting up a pro account
 ## Inclusion
 Add this line to the template of your choice where you want the form to appear
 ```
-{% include "donate:formWrapper.html" %}
+{{ aposDonationForm() }}
 ```
 
 # Assets
