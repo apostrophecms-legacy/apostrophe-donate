@@ -1,4 +1,5 @@
 module.exports = [
+  {label: 'United States', value: 'US'},
   {label: 'Afghanistan', value: 'AF'},
   {label: 'Åland Islands', value: 'AX'},
   {label: 'Albania', value: 'AL'},

@@ -1,9 +1,13 @@
 var paypal_sdk = require('paypal-rest-sdk');
-var countries = require('./countries.js');
 var _ = require('lodash');
 var async = require('async');
 var csv = require('csv');
 var moment = require('moment');
+
+// pre-populated content
+var countries = require('./countries.js');
+var months = require('./months.js');
+var years = require('./years.js');
 
 module.exports = factory;
 
@@ -84,14 +88,16 @@ function Construct(options, callback) {
     {
       name: 'expire_month',
       label: 'Expire Month',
-      type: 'integer',
+      type: 'select',
       required: true,
+      choices: months
     },
     {
       name: 'expire_year',
       label: 'Expire Year',
-      type: 'integer',
+      type: 'select',
       required: true,
+      choices: years
     },
     {
       name: 'line1',
@@ -159,6 +165,8 @@ function Construct(options, callback) {
         values.expire_year = values.expire_year + 2000;
       }
 
+      values.expire_month = parseInt(values.expire_month);
+
       var payment_details = {
         "intent": "sale",
         "payer": {
@@ -189,6 +197,9 @@ function Construct(options, callback) {
       return paypal_sdk.payment.create(payment_details, function(error, payment){
         if(error){
           console.error(error);
+          if (error.response.details)) {
+            console.error(error.response.details))
+          }
           errors.number = "Your credit card was not accepted. Please double check your information.";
           return send();
         } else {
