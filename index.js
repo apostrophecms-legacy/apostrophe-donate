@@ -158,7 +158,7 @@ function Construct(options, callback) {
   app.post('/apos-donate', function(req, res) {
     var errors = {};
     var values = {};
-
+    console.log('IM THE OOOOOOLD ONE');
     return self._schemas.convertFields(req, self.schema, 'form', req.body, values, function(err) {
 
       if (values.expire_year < 2000) {
@@ -214,6 +214,8 @@ function Construct(options, callback) {
               donation.number = donation.number.substr(donation.length -  4, 4);
               self._donations.insert(donation, callback);
             },
+            //expose data for external api
+            //exposeData: self.exposeData,
             emailDonor: function(callback) {
               return self.email(
                 req,
@@ -316,9 +318,12 @@ function Construct(options, callback) {
   return self._apos.db.collection('donations', function(err, _donations) {
     self._donations = _donations;
     // Invoke the final callback. This must happen on next tick or later!
-    return process.nextTick(function() {
-      return callback(err);
-    });
+    if(callback)
+    {
+      return process.nextTick(function() {
+        return callback(err);
+      });
+    }
   });
 }
 
