@@ -135,6 +135,12 @@ function Construct(options, callback) {
       label: 'Email Address',
       type: 'string',
       required: true
+    },
+    {
+      name: 'description',
+      label: 'Name',
+      type: 'string',
+      required: false
     }
   ].concat(options.addFields || []);
 
