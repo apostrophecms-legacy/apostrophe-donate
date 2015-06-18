@@ -137,8 +137,14 @@ function Construct(options, callback) {
       required: true
     },
     {
+      name: 'phone',
+      label: 'Phone Number',
+      type: 'string',
+      required: false
+    },
+    {
       name: 'description',
-      label: 'Name',
+      label: 'Description',
       type: 'string',
       required: false
     }

@@ -21,6 +21,7 @@ In `app.js`, you'll need to configure the `apostrophe-donate` module, just like 
         client_id: 'xxxxxx',
         client_secret: 'xxxxxx'
       },
+      description: 'Donation for P'unk Ave', //description of transaction
       // configure the email to send to the donor
       from:{
         email: 'email@email.com',
@@ -32,7 +33,7 @@ In `app.js`, you'll need to configure the `apostrophe-donate` module, just like 
         name: 'Recipient'
       },
       thankYouSubject: 'Thanks!', // subject of the email to the donor
-      confirmationSubject: 'Yay!' // subject of the email to send to the recipient of the donation
+      confirmationSubject: 'Yay!' // subject of the email to send to the recipient of the donation,
     }
 ```
 
