@@ -10,6 +10,8 @@ $(function() {
 
       aposSchemas.populateFields($el, schema, data, function(){});
 
+      apos.emit('donatePopulated', $el, schema, data);
+
       $('body').on('submit', '[data-apos-donate-form]', function(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -17,15 +19,23 @@ $(function() {
         var data = {};
         $el.find('.apos-donate-pending').addClass('apos-donate-show');
         aposSchemas.convertFields($el, schema, data, function(error) {
-          if(error) {
+          var status = {
+            error: null
+          };
+          if (!error) {
+            apos.emit('donateConverted', $el, schema, data, status);
+          }
+          if(error || status.error) {
             $el.find('.apos-donate-pending').removeClass('apos-donate-show');
             aposSchemas.scrollToError($el);
+            apos.emit('donateError', $el, schema, data, error);
             return;
           }
           $.post('/apos-donate', data, function(data){
             if (data.status == 'ok') {
               $('[data-apos-donate-form-thanks]').show();
               $('[data-apos-donate-form]').remove();
+              $('[data-apos-donate-form-thanks]')[0].scrollIntoView();
             } else {
               //re-render form with errors
               _.each(data.errors, function(value, key){
