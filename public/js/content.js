@@ -22,9 +22,9 @@ $(function() {
           var status = {
             error: null
           };
-          if (!error) {
-            apos.emit('donateConverted', $el, schema, data, status);
-          }
+
+          apos.emit('donateConverted', $el, schema, data, status);
+          
           if(error || status.error) {
             $el.find('.apos-donate-pending').removeClass('apos-donate-show');
             aposSchemas.scrollToError($el);
