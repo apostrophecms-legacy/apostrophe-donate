@@ -45,6 +45,8 @@ $(function() {
                 $error.text(value);
                 $targetFieldset.append($error);
               });
+
+              apos.emit('donateFail', $el, schema, data.errors);
             }
             $el.find('.apos-donate-pending').removeClass('apos-donate-show');
           });
