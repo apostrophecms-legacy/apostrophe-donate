@@ -140,7 +140,7 @@ function Construct(options, callback) {
       name: 'phone',
       label: 'Phone Number',
       type: 'string',
-      required: false
+      required: true
     },
     {
       name: 'description',
