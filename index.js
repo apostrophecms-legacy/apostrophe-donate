@@ -21,6 +21,8 @@ function Construct(options, callback) {
 
   paypal_sdk.configure(options.payPal);
 
+  self.options = options;
+
   self._apos = options.apos;
   self._apos.mixinModuleAssets(self, 'donate', __dirname, options);
   self._apos.mixinModuleEmail(self);
