@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/punkave/apostrophe-donate.git"
+    "url": "https://github.com/apostrophecms-legacy/apostrophe-donate.git"
   },
   "keywords": [
     "apostrophe",
@@ -22,9 +22,9 @@
   "author": "P'unk Avenue LLC",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/punkave/apostrophe-donate/issues"
+    "url": "https://github.com/apostrophecms-legacy/apostrophe-donate/issues"
   },
-  "homepage": "https://github.com/punkave/apostrophe-donate",
+  "homepage": "https://github.com/apostrophecms-legacy/apostrophe-donate",
   "dependencies": {
     "paypal-rest-sdk": "^0.9.2",
     "async": "0.8.x",
