@@ -34,11 +34,17 @@ In `app.js`, you'll need to configure the `apostrophe-donate` module, just like 
       },
       thankYouSubject: 'Thanks!', // subject of the email to the donor
       confirmationSubject: 'Yay!' // subject of the email to send to the recipient of the donation,
+      // Your recaptcha 2.0 key and secret. IF YOU LEAVE THIS OUT,
+      // YOU *WILL* GET OWNED BY CREDIT CARD FRAUD TESTERS. DON'T
+      // leave this out
+      recaptcha: {
+        key: 'xxx',
+        secret: 'yyy'
+      }
     }
 ```
 
 The `client_id` and `client_secret` are retrieved after setting up a pro account with PayPal and registering your application.
-
 
 ## Registering an app with PayPal
 
@@ -48,6 +54,10 @@ The `client_id` and `client_secret` are retrieved after setting up a pro account
 * Click the **Create App**
 * Under **Test Credentials**, note the Client ID and Secret. These are for your local `data/local.js` configuration so as to not be playing with real money in development.
 * Under **Live Credentials**, click **Show** to find the production Client ID and Secret
+
+## Registering your recaptcha 2.x key and secret
+
+See the [recaptcha documentation](https://developers.google.com/recaptcha/docs/display). You WILL regret skipping this step. Fraudsters routinely use legitimate sites to test stolen cards in bulk.
 
 ## Inclusion
 Add this line to the template of your choice where you want the form to appear

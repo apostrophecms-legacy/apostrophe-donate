@@ -8,6 +8,10 @@
   {{ schemaFields(schema, {from: 'type', to: 'expire_year'}) }}
   <label>Billing Information</label>
   {{ schemaFields(schema, {from: 'line1', to: 'phone'}) }}
+  {% if recaptcha %}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <div class="g-recaptcha" id="donate-grecaptcha" data-sitekey="{{ recaptcha.key }}"></div>
+  {% endif %}
   <input value="Donate" type="submit"/>
   <div class="apos-donate-pending"><img src="/modules/donate/images/spinner.gif"></div>
 </form>

@@ -31,7 +31,10 @@ $(function() {
             apos.emit('donateError', $el, schema, data, error);
             return;
           }
-          $.post('/apos-donate', data, function(data){
+          if ($('#donate-grecaptcha').length) {
+            data.captchaResponse = grecaptcha.getResponse();
+          }
+          $.post('/apos-donate', data, function(data) {
             if (data.status == 'ok') {
               $('[data-apos-donate-form-thanks]').show();
               $('[data-apos-donate-form]').remove();
