@@ -24,7 +24,7 @@ $(function() {
           };
 
           apos.emit('donateConverted', $el, schema, data, status);
-          
+
           if(error || status.error) {
             $el.find('.apos-donate-pending').removeClass('apos-donate-show');
             aposSchemas.scrollToError($el);
@@ -42,7 +42,11 @@ $(function() {
             } else {
               //re-render form with errors
               _.each(data.errors, function(value, key){
-                var $targetFieldset = aposSchemas.findFieldset($el, key);
+                if (key === 'captcha') {
+                  var $targetFieldset = $('#donate-grecaptcha');
+                } else {
+                  var $targetFieldset = aposSchemas.findFieldset($el, key);
+                }
                 var $error = $('<span data-apos-donate-error></span>');
                 $targetFieldset.find('[data-apos-donate-error]').remove();
                 $error.text(value);

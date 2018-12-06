@@ -180,10 +180,12 @@ function Construct(options, callback) {
         form: form,
 
       }, function(err, response, body) {
-        if (err || (response.statusCode !== 200)) {
+        body = JSON.parse(body);
+        if (err || (response.statusCode !== 200) || body["success"] !== true) {
+          console.error('CAPTCHA rejection.');
           return res.send({
             status: 'captcha',
-            errors: [ 'captcha' ]
+            errors: { captcha: 'Verification failed.' }
           });
         } else {
           return donate();
