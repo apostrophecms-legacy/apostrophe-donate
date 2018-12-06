@@ -24,14 +24,17 @@ $(function() {
           };
 
           apos.emit('donateConverted', $el, schema, data, status);
-          
+
           if(error || status.error) {
             $el.find('.apos-donate-pending').removeClass('apos-donate-show');
             aposSchemas.scrollToError($el);
             apos.emit('donateError', $el, schema, data, error);
             return;
           }
-          $.post('/apos-donate', data, function(data){
+          if ($('#donate-grecaptcha').length) {
+            data.captchaResponse = grecaptcha.getResponse();
+          }
+          $.post('/apos-donate', data, function(data) {
             if (data.status == 'ok') {
               $('[data-apos-donate-form-thanks]').show();
               $('[data-apos-donate-form]').remove();
@@ -39,7 +42,11 @@ $(function() {
             } else {
               //re-render form with errors
               _.each(data.errors, function(value, key){
-                var $targetFieldset = aposSchemas.findFieldset($el, key);
+                if (key === 'captcha') {
+                  var $targetFieldset = $('#donate-grecaptcha');
+                } else {
+                  var $targetFieldset = aposSchemas.findFieldset($el, key);
+                }
                 var $error = $('<span data-apos-donate-error></span>');
                 $targetFieldset.find('[data-apos-donate-error]').remove();
                 $error.text(value);

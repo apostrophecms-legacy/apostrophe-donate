@@ -1,5 +1,5 @@
 {
-  "version": "0.5.13",
+  "version": "0.5.14",
   "name": "apostrophe-donate",
   "description": "Donate module for Apostrophe CMS",
   "main": "index.js",
@@ -26,10 +26,11 @@
   },
   "homepage": "https://github.com/apostrophecms-legacy/apostrophe-donate",
   "dependencies": {
-    "paypal-rest-sdk": "^1.x",
     "async": "0.8.x",
-    "lodash": "2.4.x",
     "csv": "^0.4.0",
-    "moment": "^2.6.0"
+    "lodash": "2.4.x",
+    "moment": "^2.6.0",
+    "paypal-rest-sdk": "^1.x",
+    "request": "^2.88.0"
   }
 }

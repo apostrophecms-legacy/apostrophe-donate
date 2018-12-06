@@ -3,7 +3,7 @@ var _ = require('lodash');
 var async = require('async');
 var csv = require('csv');
 var moment = require('moment');
-
+var request = require('request');
 // pre-populated content
 var countries = require('./countries.js');
 var months = require('./months.js');
@@ -162,21 +162,46 @@ function Construct(options, callback) {
 
   // create a custom nunjucks function to render our form
   self._apos.addLocal('aposDonationForm', function(){
-    return self.render('formWrapper', {countries: countries, schema: self.schema});
+    return self.render('formWrapper', {countries: countries, schema: self.schema, recaptcha: self.options.recaptcha});
   });
 
   app.get('/apos-donate', function(req, res) {
-    return res.send(self.render('form', {countries: countries, schema: self.schema}));
+    return res.send(self.render('form', {countries: countries, schema: self.schema, recaptcha: self.options.recaptcha}));
   });
 
   require('./lib/api.js')(self, options, paypal_sdk);
   app.post('/apos-donate', function(req, res) {
-    return self.donate(req, req.body, function(errors){
-      return res.send({
-        status: _.isEmpty(errors) ? 'ok' : 'error',
-        errors: errors
+    if (self.options.recaptcha) {
+      var form = {
+        secret: self.options.recaptcha.secret,
+        response: req.body.captchaResponse
+      };
+      return request.post('https://www.google.com/recaptcha/api/siteverify', {
+        form: form,
+
+      }, function(err, response, body) {
+        body = JSON.parse(body);
+        if (err || (response.statusCode !== 200) || body["success"] !== true) {
+          console.error('CAPTCHA rejection.');
+          return res.send({
+            status: 'captcha',
+            errors: { captcha: 'Verification failed.' }
+          });
+        } else {
+          return donate();
+        }
       });
-    });
+    } else {
+      return donate();
+    }
+    function donate() {
+      return self.donate(req, req.body, function(errors){
+        return res.send({
+          status: _.isEmpty(errors) ? 'ok' : 'error',
+          errors: errors
+        });
+      });
+    }
   });
 
   app.get('/apos-export-donations', function(req, res) {
@@ -221,6 +246,7 @@ function Construct(options, callback) {
   self._apos.mixinModuleAssets(self, 'donate', __dirname, options);
   self.pushAsset('stylesheet', 'content', { when: 'always' });
   self.pushAsset('script', 'content', { when: 'always' });
+  self.pushAsset('script', 'captcha', { when: 'always' });
 
   // Get hold of a MongoDB collection for donations
   return self._apos.db.collection('donations', function(err, _donations) {
@@ -233,6 +259,8 @@ function Construct(options, callback) {
       });
     }
   });
+
+
 }
 
 // Export the constructor so others can subclass
