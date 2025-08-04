@@ -1,3 +1,7 @@
+# ⛔️ **DEPRECATED** — do not use for new projects
+
+See [our current docs](https://docs.apostrophecms.org/)
+
 #apostrophe-donate
 `apostrophe-donate` allows a developer to quickly add a donation form to a webpage on an [apostrophe-sandbox](https://github.com/apostrophe-sandbox)-powered website.
 It uses the [paypal-api-sdk](https://github.com/paypal/rest-api-sdk-nodejs) module to process payments and allows email configuration to the donor and recipient of the donation.
